@@ -34,7 +34,7 @@ jobs:
         env:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          UI_BASE_URL: ${{ secrets.BASE_URL }}
+          UI_BASE_URL: ${{ secrets.UI_BASE_URL }}
         run: |
           pytest tests/ --html=report.html --self-contained-html
       
