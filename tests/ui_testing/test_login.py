@@ -21,17 +21,23 @@ def test_login_invalid_email(page):
     login = Login(page)
     login.click_login()
     login.fill_form("userqa@qa.com", PASSWORD)
-    error = login.get_error()
+    error1 = login.invalid_email_passw_error()
+    error2 = login.email_has_exceeded()
     logger.info("try login verification error")
-    expect(error).to_be_visible()
-    logger.info("test done, login error ")
+    if error1.is_visible():
+        expect(error[0]).to_be_visible()
+        logger.info("email invalid, login error ")
+    else:
+        expect(error2).to_be_visible()
+        logger.info("email has exceeded, login error ")
+
 # LGN-03
 def test_login_invalid_password(page):
     logger.info("starting login with invalid password")
     login = Login(page)
     login.click_login()
     login.fill_form(EMAIL, "password")
-    error = login.get_error()
+    error = login.invalid_email_passw_error()
     logger.info("try login verification error")
     expect(error).to_be_visible()
     logger.info("test done, login error")

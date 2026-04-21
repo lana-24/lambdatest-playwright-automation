@@ -37,11 +37,18 @@ class Login(BasePage):
     def get_success(self):
         return self.page.get_by_role("link", name=" Edit your account information")
         
-    def get_error(self):
-        logger.info("get error message")
+    def invalid_email_passw_error(self):
+        logger.debug("get invalid email error message")
         error_text= " Warning: No match for E-Mail Address and/or Password."
-        return self.page.get_by_text(error_text)
-        
+        invalid_email = self.page.get_by_text(error_text)        
+        return invalid_email
+
+    def email_has_exceeded(self):
+        logger.debug("get  email has exceeded error message")
+        error_text= " Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."
+        exceeded_email = self.page.get_by_text(error_text)
+        return exceeded_email
+    
     def click_logout(self):
         # click sign out
         logger.info('click Sign out')
