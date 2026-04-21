@@ -6,3 +6,4 @@ pytest-html==4.1.1
 pytest-xdist==3.6.1
 allure-pytest==2.13.5
 jsonschema==4.26.0
+faker
