@@ -11,7 +11,7 @@ class Register(BasePage):
 
     def click_register(self):
         self.my_account.click()
-        self.page.get_by_role("link", name=" Register").click()
+        self.page.get_by_role("link", name=" Register").first.click()
 
     def fill_name(self, firstname=None, lastname=None):
         if firstname:
