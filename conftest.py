@@ -52,7 +52,7 @@ def pytest_runtest_makereport(item, call):
             # 3. Ambil Screenshot untuk bukti visual
             if not os.path.exists('logs/screenshots'):
                 os.mkdir('logs/screenshots')
-            screenshot_path = f"logs/screenshots/fail_{test_name}_{datetime.now().strftime("%y%m%d_%H%M%S")}.png"
+            screenshot_path = f'logs/screenshots/fail_{test_name}_{datetime.now().strftime("%y%m%d_%H%M%S")}.png'
             page.screenshot(path=screenshot_path)
             logger.info(f"Screenshot disimpan di: {screenshot_path}")
 

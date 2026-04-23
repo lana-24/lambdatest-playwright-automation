@@ -25,7 +25,7 @@ def test_login_invalid_email(page):
     error2 = login.email_has_exceeded()
     logger.info("try login verification error")
     if error1.is_visible():
-        expect(error[0]).to_be_visible()
+        expect(error1).to_be_visible()
         logger.info("email invalid, login error ")
     else:
         expect(error2).to_be_visible()
