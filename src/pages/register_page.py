@@ -3,16 +3,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class Register(BasePage):
+class RegisterPage(BasePage):
     def __init__(self, page):
-        super().__init__(page)
-        self.navigate()
-        self.my_account = self.page.get_by_role("button", name=" My account ")
-
-    def click_register(self):
-        self.my_account.click()
-        self.page.get_by_role("link", name=" Register").first.click()
-
+        super().__init__(page)        
+        
+    def open(self):
+        self.navigate("/index.php?route=account/register")
+        return self
+        
     def fill_name(self, firstname=None, lastname=None):
         if firstname:
             logger.info(f"fill firstname: {firstname}")
