@@ -12,6 +12,8 @@ also i use Continous Integration, After the test is run, there is a bot that wil
 - **Pytest 8.3.2**
 - **Pytest-Playwright 0.7.2** 
 - **Pytest-html 4.1.1**
+- **Docker 28.5.1-1**
+- **Faker 40.15.0**
 
 ## Development Environment
 - **Emacs**
@@ -19,8 +21,8 @@ also i use Continous Integration, After the test is run, there is a bot that wil
 
 ## What can this code do?
 - login test
+- register test
 - chekcout test
-- filter test
 
 ## How to run?
 1. **Clone** this repo.
