@@ -13,7 +13,7 @@ class HomePage(BasePage):
 
     def go_to_login(self):
         self.my_account.click()
-        self.page.get_by_role("link", name=" Login").click() 
+        self.page.get_by_role("link", name=" Login").first.click() 
         return LoginPage(self.page)
 
     def go_to_register(self):

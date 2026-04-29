@@ -29,7 +29,7 @@ class LoginPage(BasePage):
             self.page.get_by_placeholder("Password").focus()
 
         logger.info("click Login")
-        self.page.get_by_role("button", name="Login").click()
+        self.page.get_by_role("button", name="Login").first.click()
 
     def get_success(self):
         return self.page.get_by_role("link", name=" Edit your account information")
