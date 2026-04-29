@@ -12,5 +12,5 @@ class HomePage(BasePage):
 
     def go_to_login(self):
         self.page.get_by_role("button", name=" My account ").click()
-        # self.page.get_by_role("link", name=" Login").click() 
+        self.page.get_by_role("link", name=" Login").click() 
         return LoginPage(self.page)

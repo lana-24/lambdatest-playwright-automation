@@ -1,7 +1,7 @@
 from playwright.sync_api import expect
 import logging
 # from src.pages.login_page import LoginPage
-from src.pages.login_page import HomePage
+from src.pages.home_page import HomePage
 from src.config.config import EMAIL, PASSWORD
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,6 @@ def test_login_invalid_password(page):
 def test_logout(page):
     home_page = HomePage(page)
     login_page = home_page.open().go_to_login()
-    login_page.click_login()
     login_page.fill_form(EMAIL, PASSWORD)
     success = login_page.get_success()
     logger.info("verification login success")
