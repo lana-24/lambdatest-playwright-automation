@@ -5,7 +5,7 @@ from src.pages.register_page import RegisterPage
 class HomePage(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.my_account = self.page.get_by_role("button", name=" My account ").click()
+        self.my_account = self.page.get_by_role("button", name=" My account ")
         
     def open(self):
         self.navigate()

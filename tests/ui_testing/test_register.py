@@ -29,7 +29,7 @@ def test_register(page, max_attempts=3):
             logger.debug("nothing error")
             break
 
-    locator = register.verifying_success()
+    locator = register_page.verifying_success()
     logger.info("verifying success register")
     expect(locator[0]).to_be_visible()
     expect(locator[1]).to_be_enabled()
@@ -112,10 +112,10 @@ def test_invalid_email(page):
     register_page.fill_telephone(TestData.phone_number())
     password = TestData.valid_password()
     register_page.fill_password(password, password)
-    register.check()
+    register_page.check()
     current_url = page.url
-    register.submit()
-    message = register.invalid_email()
+    register_page.submit()
+    message = register_page.invalid_email()
     logger.info("verifying invalid email error")
     assert page.url == current_url
     
