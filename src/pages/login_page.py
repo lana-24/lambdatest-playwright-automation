@@ -3,15 +3,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class Login(BasePage):
+class LoginPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.navigate()
-        self.my_account = self.page.get_by_role("button", name=" My account ")
 
-    def click_login(self):
-        self.my_account.click()
-        self.page.get_by_role("link", name=" Login").click()
+    def open(self):
+        self.navigate("/index.php?route=account/login")        
         
     def fill_form(self, email=None, password=None):        
         if email:
