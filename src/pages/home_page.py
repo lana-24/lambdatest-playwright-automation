@@ -1,6 +1,10 @@
 from src.pages.base_page import BasePage
-from src.pages.login_page import LoginPage
-from src.pages.register_page import RegisterPage
+from src.pages.product_page import ProductPage
+from typing import Literal
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class HomePage(BasePage):
     def __init__(self, page):
@@ -8,16 +12,11 @@ class HomePage(BasePage):
         self.my_account = self.page.get_by_role("button", name=" My account ")
         
     def open(self):
+        logger.debug("open the url")
         self.navigate()
         return self
-
-    def go_to_login(self):
-        self.my_account.click()
-        self.page.get_by_role("link", name=" Login").first.click() 
-        return LoginPage(self.page)
-
-    def go_to_register(self):
-        self.my_account.click()
-        self.page.get_by_role("link", name=" Register").first.click()
-        return RegisterPage(self.page)
     
+    def click_product(self, product_name: Literal[""]):
+        logger.info(f"click product: {product_name}")
+        self.page.get_by_role(product_name)
+        return ProductPage(self.page)

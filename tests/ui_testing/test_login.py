@@ -9,7 +9,8 @@ logger = logging.getLogger(__name__)
 def test_login(page):
     logger.info("starting test login")
     home_page = HomePage(page)
-    login_page = home_page.open().go_to_login()
+    home_page.open()
+    login_page = home_page.header.go_to_login()
     login_page.fill_form(EMAIL, PASSWORD)
     success = login_page.get_success()
     logger.info("try login verification successful")
@@ -20,7 +21,8 @@ def test_login(page):
 def test_login_invalid_email(page):
     logger.info("starting login with invalid email")
     home_page = HomePage(page)
-    login_page = home_page.open().go_to_login()
+    home_page.open()
+    login_page = home_page.header.go_to_login()
     login_page.fill_form("userqa@qa.com", PASSWORD)
     error1 = login_page.invalid_email_passw_error()
     error2 = login_page.email_has_exceeded()
@@ -36,7 +38,8 @@ def test_login_invalid_email(page):
 def test_login_invalid_password(page):
     logger.info("starting login with invalid password")
     home_page = HomePage(page)
-    login_page = home_page.open().go_to_login()
+    home_page.open()
+    login_page = home_page.header.go_to_login()
     login_page.fill_form(EMAIL, "password")
     error = login_page.invalid_email_passw_error()
     logger.info("try login verification error")
@@ -46,7 +49,8 @@ def test_login_invalid_password(page):
 # LGN-04
 def test_logout(page):
     home_page = HomePage(page)
-    login_page = home_page.open().go_to_login()
+    home_page.open()
+    login_page = home_page.header.go_to_login()
     login_page.fill_form(EMAIL, PASSWORD)
     success = login_page.get_success()
     logger.info("verification login success")

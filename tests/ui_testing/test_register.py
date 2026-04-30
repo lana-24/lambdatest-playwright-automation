@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 def test_register(page, max_attempts=3):
     logger.info("start test register")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     for _ in range(max_attempts):
         register_page.fill_name(TestData.first_name(), TestData.last_name())
         register_page.fill_email(TestData.valid_email())
@@ -38,7 +39,8 @@ def test_register(page, max_attempts=3):
 def test_firstname_less_than_min(page):
     logger.info("start test firstname less than min")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(lastname=TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -54,7 +56,8 @@ def test_firstname_less_than_min(page):
 def test_firstname_more_than_max(page):
     logger.info("start test firstname more than max")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.long_text(), TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -71,7 +74,8 @@ def test_firstname_more_than_max(page):
 def test_lastname_less_than_min(page):
     logger.info("start test lastname less than min")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -88,7 +92,8 @@ def test_lastname_less_than_min(page):
 def test_lastname_more_than_max(page):
     logger.info("start test lastname more than max")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.long_text())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -106,7 +111,8 @@ def test_invalid_email(page):
     current_url = page.url
     logger.info("start test invalid email")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(TestData.invalid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -124,7 +130,8 @@ def test_invalid_email(page):
 def test_empty_email(page):
     logger.info("start test invalid email")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email()
     register_page.fill_telephone(TestData.phone_number())
@@ -141,7 +148,8 @@ def test_empty_email(page):
 def test_email_already_registered(page):
     logger.info("start test  email already registered")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(EMAIL)
     register_page.fill_telephone(TestData.phone_number())
@@ -158,7 +166,8 @@ def test_email_already_registered(page):
 def test_telephone_less_than_min(page):
     logger.info("start test number telephone less than min")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone("01")
@@ -175,7 +184,8 @@ def test_telephone_less_than_min(page):
 def test_telephone_more_than_max(page):
     logger.info("start test number telephone more than max")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.long_phone())
@@ -192,7 +202,8 @@ def test_telephone_more_than_max(page):
 def test_password_less_than_min(page):
     logger.info("start test password less than min")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -208,7 +219,8 @@ def test_password_less_than_min(page):
 def test_password_more_than_max(page):
     logger.info("start test password more than max")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -224,7 +236,8 @@ def test_password_more_than_max(page):
 def test_wrong_password_confirm(page):
     logger.info("start test wrong password confirm")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
@@ -241,7 +254,8 @@ def test_wrong_password_confirm(page):
 def test_uncheck_privay_policy(page):
     logger.info("start test uncheck Privacy Policy")
     home_page = HomePage(page)
-    register_page = home_page.open().go_to_register()    
+    home_page.open()
+    register_page = home_page.header.go_to_register()
     register_page.fill_name(TestData.first_name(), TestData.last_name())
     register_page.fill_email(TestData.valid_email())
     register_page.fill_telephone(TestData.phone_number())
