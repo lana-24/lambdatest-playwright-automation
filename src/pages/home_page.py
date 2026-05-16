@@ -16,7 +16,7 @@ class HomePage(BasePage):
         self.navigate()
         return self
     
-    def click_product(self, product_name: Literal[""]):
+    def click_product(self, product_name: Literal["HP LP3065"]):
         logger.info(f"click product: {product_name}")
-        self.page.get_by_role(product_name)
+        self.page.get_by_role("link", name=product_name).nth(0).click()
         return ProductPage(self.page)
