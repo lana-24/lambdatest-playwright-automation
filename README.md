@@ -58,10 +58,10 @@ also i use Continous Integration, After the test is run, there is a bot that wil
 | RGT-13 | Register | Register with wrong password confirmation                 | show message error "Password confirmation does not match password!"            |
 | RGT-14 | Register | Register unchecklist Privacy Policy                       | show message error "Error: You must agree to the Privacy Policy!!"             |
 | CHK-01 | Checkout | Checkout with guest account                               | show text "Your order has been successfully processed!"                        |
-| CHK-02 | Checkout | Checkout with guest account                               | show text "Your order has been successfully processed!"                        |
-| CHK-03 | Checkout | Checkout with guest account                               | show text "Your order has been successfully processed!"                        |
+| CHK-02 | Checkout | Checkout with register account                               | show text "Your order has been successfully processed!"                        |
+| CHK-03 | Checkout | Checkout with login account                               | show text "Your order has been successfully processed!"                        |
 | CHK-04 | Checkout | Checkout with invalid email (guest account)               | show error text: error "E-Mail address does not appear to be valid!"           |
-| CHK-05 | Checkout | Checkout with invalid email (guest account)               | show error text: error "E-Mail address does not appear to be valid!"           |
+| CHK-05 | Checkout | Checkout with empty email (guest account)               | show error text: error "E-Mail address does not appear to be valid!"           |
 | CHK-06 | Checkout | Checkout with email already registered (register account) | show error text: error "Warning: E-Mail Address is already registered!"        |
 | CHK-07 | Checkout | Checkout with invalid password (login account)            | show error text: error "Warning: No match for E-Mail Address and/or Password." |
 | CHK-08 | Checkout | Checkout with email not registered  (login account)       | show error text: error "Warning: No match for E-Mail Address and/or Password." |
