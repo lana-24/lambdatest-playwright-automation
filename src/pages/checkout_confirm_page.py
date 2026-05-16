@@ -1,5 +1,4 @@
 from src.pages.base_page import BasePage
-from src.pages.checkout_page import CheckoutPage
 import logging
 
 logger = logging.getLogger(__name__)
@@ -12,7 +11,8 @@ class CheckoutConfirmPage(BasePage):
         logger.info("click Confirm Order ")
         self.page.get_by_role("button", name="Confirm Order ").click()
 
-    def click_edit(self):        
+    def click_edit(self):
+        from src.pages.checkout_page import CheckoutPage
         logger.info("click Edit")
         self.page.get_by_role("button", name=" Edit")
         return CheckoutPage(self.page)

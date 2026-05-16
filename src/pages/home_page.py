@@ -18,5 +18,8 @@ class HomePage(BasePage):
     
     def click_product(self, product_name: Literal["HP LP3065"]):
         logger.info(f"click product: {product_name}")
-        self.page.get_by_role("link", name=product_name).nth(0).click()
+        product = self.page.get_by_role("link", name=product_name).nth(1)
+        product.click()
+        product.wait_for(state="visible", timeout=5000)
+        logger.info(f"click product: {product_name} done")
         return ProductPage(self.page)

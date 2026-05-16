@@ -1,7 +1,4 @@
 from src.pages.base_page import BasePage
-from src.pages.login_page import LoginPage
-from src.pages.register_page import RegisterPage
-from src.pages.checkout_confirm_page import CheckoutConfirmPage
 import logging
 from typing import Literal
 
@@ -13,15 +10,24 @@ class CheckoutPage(BasePage):
 
     def select_login(self):
         logger.info("select Login option")
-        self.page.get_by_role("radio", name="Login").click(force=True)
+        #radio = self.page.get_by_role("radio", name="Login")
+        #logger.info(f"radios is table: {radio.is_stable()}")
+        self.page.locator("label[for='input-account-login']").click()
         logger.debug("switching LoginPage")
         # return LoginPage(self.page) # menyesal karna tidak pisah function
+        
+    def fill_login(self, email, password):
+        logger.info(f"fill email login: {email}")
+        self.page.locator("#input-login-email").fill(email)
+        logger.info("fill password")
+        self.page.locator("#input-login-password").fill(password)
 
-     def click_login(self):
+    def click_login(self):
         logger.info("click Login")
         self.page.get_by_role("button", name="Login").first.click()
     
     def select_register(self):
+        from src.pages.register_page import RegisterPage
         logger.info("select Register option")
         self.page.get_by_role("radio", name="Register Account").click(force=True)
         logger.debug("switching LoginPage")
@@ -36,17 +42,17 @@ class CheckoutPage(BasePage):
         self.page.get_by_placeholder("First Name").nth(0).fill(fname)
         logger.info(f"fill Lastname: {lname}")
         self.page.get_by_placeholder("Last Name").nth(0).fill(lname)
-
+        
     def fill_email(self, email:str, password:str=None):
         logger.info(f"fill Email: {email}")
-        self.page.get_by_placeholder("E-mail").nth(0).fill(email)
+        self.page.get_by_placeholder("E-mail").nth(1).fill(email)
 
         if password:
             logger.info("fill password")
-            self.page.get_by_placeholder("Password").fill(password)
+            self.page.locator("#input-login-password").fill(password)
             logger.debug("fill password is done")
 
-    def fill_phone(self,email:str, phone: str):
+    def fill_phone(self, phone: str):
         logger.info(f"fill Telephone: {phone}")        
         self.page.get_by_placeholder("Telephone").fill(phone)
 
@@ -62,7 +68,7 @@ class CheckoutPage(BasePage):
             logger.info(f"fill Address2: {address2}")
             self.page.get_by_placeholder("Address 2").nth(0).fill(address2)
 
-    def fill_city(self,city:str = "pasuruan", postcode:str = 76723):
+    def fill_city(self,city:str = "pasuruan", postcode:str = "76723"):
         logger.info(f"fill City: {city}")
         self.page.get_by_placeholder("City").nth(0).fill(city)
         logger.info(f"fill Post Code: {postcode}")
@@ -76,12 +82,14 @@ class CheckoutPage(BasePage):
 
     def check_privacy_policy(self):
         logger.info("check Term & Condition")
-        privacy_policy = self.page.get_by_role("checkbox", name="I have read and agree to the ")
-        privacy_policy.nth(0).check(force=True)
-        if privacy_policy.count() < 1:
-            privacy_policy.nth(1).check(force=True)
+        self.page.locator("#input-agree").scroll_into_view_if_needed()
+        self.page.locator("#input-agree").click(force=True)
+        if self.page.locator("#input-account-agree").is_visible():
+            logger.info("register term")            
+            self.page.locator("#input-account-agree").click(force=True)
 
     def click_continue(self):
+        from src.pages.checkout_confirm_page import CheckoutConfirmPage
         logger.debug("click Continue")
         self.page.get_by_role("button", name="Continue ").click()
         logger.debug("switch to CheckoutConfirmPage")
